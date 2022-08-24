@@ -5,6 +5,11 @@ import App from "./App";
 import { MantineProvider } from "@mantine/core";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Products from "./pages/Products";
+import { TokenProvider } from "./contexts/TokenContext";
+import Orders from "./pages/Orders";
+import Customers from "./pages/Customers";
+import NotFound from "./pages/NotFound";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -32,13 +37,19 @@ root.render(
         colorScheme: "light",
       }}
     >
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<App />}>
+      <TokenProvider>
+        <BrowserRouter>
+          <Routes>
             <Route path="/login" element={<Login />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+            <Route path="/" element={<App />}>
+              <Route path="/products" element={<Products />} />
+              <Route path="/orders" element={<Orders />} />
+              <Route path="/customers" element={<Customers />} />
+            </Route>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </TokenProvider>
     </MantineProvider>
   </React.StrictMode>
 );
