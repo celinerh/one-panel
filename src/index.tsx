@@ -10,6 +10,7 @@ import { TokenProvider } from "./contexts/TokenContext";
 import Orders from "./pages/Orders";
 import Customers from "./pages/Customers";
 import NotFound from "./pages/NotFound";
+import Product from "./pages/Product";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -43,6 +44,7 @@ root.render(
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<App />}>
               <Route path="/products" element={<Products />} />
+              <Route path="/product/:id" element={<Product />} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/customers" element={<Customers />} />
             </Route>
