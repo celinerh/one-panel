@@ -23,7 +23,7 @@ function Login() {
       .then((data) => setToken(data.token))
       .then(() => navigate("/products"));
   };
-  console.log(token);
+
   return (
     <div>
       <h1 className="relative mx-auto my-32 text-6xl w-fit font-Pacifico">
@@ -50,7 +50,7 @@ function Login() {
           withAsterisk
           className="w-full"
         />
-        <Button className="bg-green-400" type="submit">
+        <Button className="bg-green-400 hover:bg-green-300" type="submit">
           Log in
         </Button>
       </form>
