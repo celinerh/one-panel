@@ -1,6 +1,7 @@
 import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Heading from "../components/Heading";
 import { useToken } from "../contexts/TokenContext";
 
 interface Product {
@@ -49,8 +50,7 @@ function Products() {
 
   return (
     <div>
-      <h1>Products</h1>
-
+      <Heading title="Products" />
       <Table
         verticalSpacing="xs"
         horizontalSpacing="xl"
