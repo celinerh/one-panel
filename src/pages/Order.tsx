@@ -63,7 +63,7 @@ function Order() {
             <p>customer phone</p>
           </div>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <Select
               label="Status"
               defaultValue={order.status}
