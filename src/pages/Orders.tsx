@@ -68,9 +68,14 @@ function Orders() {
   return (
     <div>
       <h1>Orders</h1>
-      <Table verticalSpacing="xs" horizontalSpacing="xl" highlightOnHover>
+      <Table
+        verticalSpacing="xs"
+        horizontalSpacing="xl"
+        highlightOnHover
+        className="bg-white border-2 border-gray-200"
+      >
         <thead>
-          <tr>
+          <tr className="bg-gray-50">
             <th>Order ID</th>
             <th>Date</th>
             <th>Customer ID</th>
