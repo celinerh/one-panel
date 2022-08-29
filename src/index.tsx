@@ -42,7 +42,7 @@ root.render(
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<App />}>
+            <Route element={<App />}>
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<Product />} />
               <Route path="/orders" element={<Orders />} />
