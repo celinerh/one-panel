@@ -51,9 +51,14 @@ function Products() {
     <div>
       <h1>Products</h1>
 
-      <Table verticalSpacing="xs" horizontalSpacing="xl" highlightOnHover>
+      <Table
+        verticalSpacing="xs"
+        horizontalSpacing="xl"
+        highlightOnHover
+        className="bg-white border-2 border-gray-200"
+      >
         <thead>
-          <tr>
+          <tr className="bg-gray-50">
             <th>Product ID</th>
             <th>Name</th>
             <th>Brand</th>
