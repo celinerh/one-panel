@@ -11,6 +11,7 @@ import Orders from "./pages/Orders";
 import Customers from "./pages/Customers";
 import NotFound from "./pages/NotFound";
 import Product from "./pages/Product";
+import Order from "./pages/Order";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -46,6 +47,7 @@ root.render(
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<Product />} />
               <Route path="/orders" element={<Orders />} />
+              <Route path="/order/:id" element={<Order />} />
               <Route path="/customers" element={<Customers />} />
             </Route>
             <Route path="*" element={<NotFound />} />
