@@ -47,8 +47,6 @@ function Product() {
     event.preventDefault();
   };
 
-  console.log(image);
-
   return (
     <div>
       {product && (
