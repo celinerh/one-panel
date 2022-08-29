@@ -51,10 +51,10 @@ function Orders() {
       <td
         className={
           order.status === "shipped"
-            ? "bg-green-300"
+            ? "text-green-400"
             : order.status === "cancelled"
-            ? "bg-red-300"
-            : "bg-blue-300"
+            ? "text-red-400"
+            : "text-blue-400"
         }
       >
         {order.status}
