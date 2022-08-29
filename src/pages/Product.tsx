@@ -6,6 +6,7 @@ import {
   TextInput,
 } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
 
@@ -137,9 +138,18 @@ function Product() {
               }}
               multiple
             />
-            <Button className="bg-green-400 hover:bg-green-300" type="submit">
-              Update
-            </Button>
+            <div className="flex gap-2">
+              <Button className="bg-green-400 hover:bg-green-300" type="submit">
+                Update
+              </Button>
+              <Button
+                className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
+                type="submit"
+              >
+                <HiTrash />
+                <span className="pl-1">Delete</span>
+              </Button>
+            </div>
           </form>
         </>
       )}
