@@ -7,7 +7,9 @@ interface Customer {
   id: number;
   name: string;
   address: string;
+  email: string;
   phone: number;
+  marketing: boolean;
 }
 
 function Customers() {
@@ -36,7 +38,9 @@ function Customers() {
       <td>#{customer.id}</td>
       <td>{customer.name}</td>
       <td>{customer.address}</td>
+      <td>{customer.email}</td>
       <td>{customer.phone}</td>
+      <td>{customer.marketing ? "Yes" : "No"}</td>
     </tr>
   ));
 
@@ -49,7 +53,9 @@ function Customers() {
             <th>Customer ID</th>
             <th>Name</th>
             <th>Address</th>
+            <th>Email</th>
             <th>Phone</th>
+            <th>Marketing</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>

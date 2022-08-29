@@ -1,6 +1,6 @@
 import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
 
 interface OrderProduct {
@@ -10,7 +10,9 @@ interface OrderProduct {
 
 interface Order {
   id: number;
+  date: Date;
   customerId: number;
+  status: string;
   products: OrderProduct[];
 }
 
@@ -38,11 +40,27 @@ function Orders() {
   const rows = orders.map((order) => (
     <tr key={order.id}>
       <td>#{order.id}</td>
-      <td>{order.customerId}</td>
+      <td>{order.date.toString()}</td>
+      <td>#{order.customerId}</td>
       <td>
         {order.products.reduce((acc, curr) => {
           return (acc += curr.quantity);
         }, 0)}
+      </td>
+      <td
+        className={
+          order.status === "shipped"
+            ? "bg-green-300"
+            : order.status === "cancelled"
+            ? "bg-red-300"
+            : "bg-blue-300"
+        }
+      >
+        {order.status}
+      </td>
+
+      <td>
+        <Link to={`/order/${order.id}`}>Edit</Link>
       </td>
     </tr>
   ));
@@ -54,8 +72,11 @@ function Orders() {
         <thead>
           <tr>
             <th>Order ID</th>
+            <th>Date</th>
             <th>Customer ID</th>
             <th>Quantity</th>
+            <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>{rows}</tbody>
