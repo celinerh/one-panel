@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="flex App">
       <Navigation />
-      <Outlet />
+      <div className="w-full h-screen p-10">
+        <Outlet />
+      </div>
     </div>
   );
 }
