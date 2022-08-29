@@ -52,11 +52,14 @@ function Product() {
     <div>
       {product && (
         <>
-          <h1>
-            {product.name} <span>#{product.id}</span>
+          <h1 className="mb-10 text-2xl font-semibold">
+            {product.name}{" "}
+            <span className="text-base font-normal text-gray-400 align-middle">
+              #{product.id}
+            </span>
           </h1>
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <TextInput
               name="name"
               placeholder="Name"
