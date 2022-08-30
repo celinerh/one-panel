@@ -1,4 +1,5 @@
 import { Button, Select } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
@@ -41,6 +42,23 @@ function Order() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
+    fetch(`http://localhost:3001/orders/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: "Bearer " + token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(order),
+    }).then(() => {
+      navigate("/orders");
+      showNotification({
+        color: "green",
+        title: "Success!",
+        message: "Order was updated successfully",
+        autoClose: 4000,
+      });
+    });
   };
 
   return (
