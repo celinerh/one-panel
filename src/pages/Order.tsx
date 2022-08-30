@@ -1,44 +1,41 @@
-import { Button, Select } from "@mantine/core";
+import { Button, Select, Table } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
-
-interface OrderProduct {
-  id: number;
-  quantity: number;
-}
-
-interface Order {
-  id: number;
-  date: Date;
-  customerId: number;
-  status: string;
-  products: OrderProduct[];
-}
+import useCustomer from "../features/order/hooks/useCustomer";
+import useOrder from "../features/order/hooks/useOrder";
+import useProducts from "../features/order/hooks/useProducts";
 
 function Order() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { token } = useToken();
 
-  const [order, setOrder] = useState<Order>();
+  const {
+    order,
+    setOrder,
+    error: orderError,
+    isPending: isOrderPending,
+  } = useOrder(id ? Number(id) : null);
+
+  const {
+    customer,
+    error: customerError,
+    isPending: isCustomerPending,
+  } = useCustomer(order?.customerId ?? null);
+
+  const {
+    products,
+    error: productsError,
+    isPending: isProductsPending,
+  } = useProducts(order?.products.map((product) => product.id) ?? []);
 
   useEffect(() => {
     if (!token) {
       navigate("/login");
     }
   }, [token]);
-
-  useEffect(function () {
-    fetch(`http://localhost:3001/orders/${id}`, {
-      headers: {
-        authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setOrder(data));
-  }, []);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -62,6 +59,20 @@ function Order() {
     });
   };
 
+  const rows = products.map((product) => (
+    <tr key={product.id}>
+      <td>{product.name}</td>
+      <td>{product.price}</td>
+      <td>
+        {
+          order?.products.find((orderProduct) => orderProduct.id === product.id)
+            ?.quantity
+        }
+      </td>
+      <td>product total</td>
+    </tr>
+  ));
+
   return (
     <div>
       {order && (
@@ -75,21 +86,21 @@ function Order() {
 
           <div className="my-4 text-sm">
             <p>
-              customer name <span>#{order.customerId}</span>
+              {customer?.name} <span>#{order.customerId}</span>
             </p>
-            <p>customer adress</p>
-            <p>customer email</p>
-            <p>customer phone</p>
+            <p>{customer?.address}</p>
+            <p>{customer?.email}</p>
+            <p>{customer?.phone}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <Select
               label="Status"
               defaultValue={order.status}
-              onChange={(e) => {
+              onChange={(status) => {
                 setOrder({
                   ...order,
-                  status: e ?? "new",
+                  status: status ?? "new",
                 });
               }}
               data={[
@@ -98,6 +109,25 @@ function Order() {
                 { value: "shipped", label: "shipped" },
               ]}
             />
+            <Table className="bg-white border-2 border-gray-200">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th>Products</th>
+                  <th>Cost</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody className="bg-white">{rows}</tbody>
+              <tfoot>
+                <tr className="bg-gray-300">
+                  <th>Total</th>
+                  <th></th>
+                  <th></th>
+                  <th>Total</th>
+                </tr>
+              </tfoot>
+            </Table>
 
             <div className="flex gap-2">
               <Button className="bg-green-400 hover:bg-green-300" type="submit">
