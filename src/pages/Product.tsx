@@ -60,7 +60,8 @@ function Product() {
         color: "green",
         title: "Success!",
         message: "Product was updated successfully",
-        autoClose: 4000,
+        autoClose: 3000,
+        disallowClose: true,
       });
     });
   };

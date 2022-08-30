@@ -56,7 +56,8 @@ function Order() {
         color: "green",
         title: "Success!",
         message: "Order was updated successfully",
-        autoClose: 4000,
+        autoClose: 3000,
+        disallowClose: true,
       });
     });
   };
