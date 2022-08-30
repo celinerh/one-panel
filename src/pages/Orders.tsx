@@ -39,7 +39,7 @@ function Orders() {
   }, []);
 
   const rows = orders.map((order) => (
-    <tr key={order.id}>
+    <tr key={order.id} className="group">
       <td>#{order.id}</td>
       <td>{order.date.toString()}</td>
       <td>#{order.customerId}</td>
@@ -51,10 +51,10 @@ function Orders() {
       <td
         className={
           order.status === "shipped"
-            ? "text-green-400"
+            ? "bg-green-100 group-hover:bg-green-200"
             : order.status === "cancelled"
-            ? "text-red-400"
-            : "text-blue-400"
+            ? "bg-red-100 group-hover:bg-red-200"
+            : "bg-blue-100 group-hover:bg-blue-200"
         }
       >
         {order.status}
@@ -81,7 +81,7 @@ function Orders() {
             <th>Date</th>
             <th>Customer ID</th>
             <th>Quantity</th>
-            <th>Status</th>
+            <th className="w-36">Status</th>
             <th>Action</th>
           </tr>
         </thead>
