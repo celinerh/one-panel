@@ -12,6 +12,7 @@ import Customers from "./pages/Customers";
 import NotFound from "./pages/NotFound";
 import Product from "./pages/Product";
 import Order from "./pages/Order";
+import { NotificationsProvider } from "@mantine/notifications";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -39,21 +40,23 @@ root.render(
         colorScheme: "light",
       }}
     >
-      <TokenProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route element={<App />}>
-              <Route path="/products" element={<Products />} />
-              <Route path="/product/:id" element={<Product />} />
-              <Route path="/orders" element={<Orders />} />
-              <Route path="/order/:id" element={<Order />} />
-              <Route path="/customers" element={<Customers />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TokenProvider>
+      <NotificationsProvider position="top-right" zIndex={2077}>
+        <TokenProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route element={<App />}>
+                <Route path="/products" element={<Products />} />
+                <Route path="/product/:id" element={<Product />} />
+                <Route path="/orders" element={<Orders />} />
+                <Route path="/order/:id" element={<Order />} />
+                <Route path="/customers" element={<Customers />} />
+              </Route>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TokenProvider>
+      </NotificationsProvider>
     </MantineProvider>
   </React.StrictMode>
 );
