@@ -5,6 +5,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
+import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -45,6 +46,23 @@ function Product() {
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
+
+    fetch(`http://localhost:3001/products/${id}`, {
+      method: "PUT",
+      headers: {
+        authorization: "Bearer " + token,
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(product),
+    }).then(() => {
+      navigate("/products");
+      showNotification({
+        color: "green",
+        title: "Success!",
+        message: "Product was updated successfully",
+        autoClose: 4000,
+      });
+    });
   };
 
   return (
