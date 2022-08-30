@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import { MantineProvider } from "@mantine/core";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
 import { TokenProvider } from "./contexts/TokenContext";
@@ -46,6 +46,7 @@ root.render(
             <Routes>
               <Route path="/login" element={<Login />} />
               <Route element={<App />}>
+                <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:id" element={<Product />} />
                 <Route path="/orders" element={<Orders />} />
