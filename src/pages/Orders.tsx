@@ -1,4 +1,4 @@
-import { Table } from "@mantine/core";
+import { Badge, Button, Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Heading from "../components/Heading";
@@ -39,7 +39,20 @@ function Orders() {
   }, []);
 
   const rows = orders.map((order) => (
-    <tr key={order.id} className="group">
+    <tr key={order.id}>
+      <td>
+        <Badge
+          color={
+            order.status === "shipped"
+              ? "green"
+              : order.status === "cancelled"
+              ? "red"
+              : "blue"
+          }
+        >
+          {order.status}
+        </Badge>
+      </td>
       <td>#{order.id}</td>
       <td>{order.date.toString()}</td>
       <td>#{order.customerId}</td>
@@ -48,20 +61,15 @@ function Orders() {
           return (acc += curr.quantity);
         }, 0)}
       </td>
-      <td
-        className={
-          order.status === "shipped"
-            ? "bg-green-100 group-hover:bg-green-200"
-            : order.status === "cancelled"
-            ? "bg-red-100 group-hover:bg-red-200"
-            : "bg-blue-100 group-hover:bg-blue-200"
-        }
-      >
-        {order.status}
-      </td>
 
       <td>
-        <Link to={`/order/${order.id}`}>Edit</Link>
+        <Button
+          component={Link}
+          to={`/order/${order.id}`}
+          className="bg-gray-400 hover:bg-gray-300"
+        >
+          Edit
+        </Button>
       </td>
     </tr>
   ));
@@ -72,16 +80,15 @@ function Orders() {
       <Table
         verticalSpacing="xs"
         horizontalSpacing="xl"
-        highlightOnHover
         className="bg-white border-2 border-gray-200"
       >
         <thead>
           <tr className="bg-gray-50">
+            <th className="w-48">Status</th>
             <th>Order ID</th>
             <th>Date</th>
             <th>Customer ID</th>
             <th>Quantity</th>
-            <th className="w-36">Status</th>
             <th>Action</th>
           </tr>
         </thead>
