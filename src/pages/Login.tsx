@@ -50,7 +50,7 @@ function Login() {
           withAsterisk
           className="w-full"
         />
-        <Button className="bg-green-400 hover:bg-green-300" type="submit">
+        <Button color="primary" type="submit">
           Log in
         </Button>
       </form>

@@ -72,6 +72,7 @@ function Product() {
     openConfirmModal({
       title: "Are you sure you want to delete this product?",
       labels: { confirm: "Yes", cancel: "No" },
+      confirmProps: { color: "red" },
       onConfirm: () => {
         fetch(`http://localhost:3001/products/${id}`, {
           method: "DELETE",
@@ -182,13 +183,10 @@ function Product() {
               multiple
             />
             <div className="flex gap-2">
-              <Button className="bg-green-400 hover:bg-green-300" type="submit">
+              <Button color="primary" type="submit">
                 Update
               </Button>
-              <Button
-                className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
-                onClick={openModal}
-              >
+              <Button color="secondary" variant="outline" onClick={openModal}>
                 <HiTrash />
                 <span className="pl-1">Delete</span>
               </Button>

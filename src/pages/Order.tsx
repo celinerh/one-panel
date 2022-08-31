@@ -65,6 +65,7 @@ function Order() {
       title: "Are you sure you want to discard the changes?",
       children: <Text size="sm">You will lose all the changes you made</Text>,
       labels: { confirm: "Yes", cancel: "No" },
+      confirmProps: { color: "red" },
       onConfirm: () => navigate("/orders"),
     });
 
@@ -144,11 +145,13 @@ function Order() {
             </Table>
 
             <div className="flex gap-2">
-              <Button className="bg-green-400 hover:bg-green-300" type="submit">
+              <Button color="primary" type="submit">
                 Update
               </Button>
               <Button
-                className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
+                // className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
+                variant="outline"
+                color="secondary"
                 onClick={openModal}
               >
                 Cancel

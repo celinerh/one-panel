@@ -63,11 +63,7 @@ function Orders() {
       </td>
 
       <td>
-        <Button
-          component={Link}
-          to={`/order/${order.id}`}
-          className="bg-gray-400 hover:bg-gray-300"
-        >
+        <Button component={Link} to={`/order/${order.id}`} color="primary">
           Edit
         </Button>
       </td>

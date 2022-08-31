@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { MantineProvider } from "@mantine/core";
+import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
@@ -15,13 +15,17 @@ import Order from "./pages/Order";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
 
+const customEmotionCache = createEmotionCache({ key: "one-panel" });
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
     <MantineProvider
-      withGlobalStyles={false}
+      withGlobalStyles
+      withNormalizeCSS
+      emotionCache={customEmotionCache}
       theme={{
         colors: {
           primary: [
@@ -35,6 +39,18 @@ root.render(
             "#15803d",
             "#166534",
             "#14532d",
+          ],
+          secondary: [
+            "#fef2f2",
+            "#fee2e2",
+            "#fecaca",
+            "#fca5a5",
+            "#f87171",
+            "#ef4444",
+            "#dc2626",
+            "#b91c1c",
+            "#991b1b",
+            "#7f1d1d",
           ],
         },
         primaryShade: { light: 4, dark: 8 },
