@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import Product from "./pages/Product";
 import Order from "./pages/Order";
 import { NotificationsProvider } from "@mantine/notifications";
+import { ModalsProvider } from "@mantine/modals";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -41,22 +42,24 @@ root.render(
       }}
     >
       <NotificationsProvider position="top-right" zIndex={2077}>
-        <TokenProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route element={<App />}>
-                <Route path="/" element={<Navigate to="/login" replace />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/product/:id" element={<Product />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/order/:id" element={<Order />} />
-                <Route path="/customers" element={<Customers />} />
-              </Route>
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TokenProvider>
+        <ModalsProvider>
+          <TokenProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route element={<App />}>
+                  <Route path="/" element={<Navigate to="/login" replace />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/product/:id" element={<Product />} />
+                  <Route path="/orders" element={<Orders />} />
+                  <Route path="/order/:id" element={<Order />} />
+                  <Route path="/customers" element={<Customers />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </BrowserRouter>
+          </TokenProvider>
+        </ModalsProvider>
       </NotificationsProvider>
     </MantineProvider>
   </React.StrictMode>
