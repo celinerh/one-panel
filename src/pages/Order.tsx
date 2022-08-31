@@ -148,12 +148,7 @@ function Order() {
               <Button color="primary" type="submit">
                 Update
               </Button>
-              <Button
-                // className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
-                variant="outline"
-                color="secondary"
-                onClick={openModal}
-              >
+              <Button variant="outline" color="secondary" onClick={openModal}>
                 Cancel
               </Button>
             </div>
