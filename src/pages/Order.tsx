@@ -68,19 +68,24 @@ function Order() {
       onConfirm: () => navigate("/orders"),
     });
 
-  const rows = products.map((product) => (
-    <tr key={product.id}>
-      <td>{product.name}</td>
-      <td>{product.price}</td>
-      <td>
-        {
-          order?.products.find((orderProduct) => orderProduct.id === product.id)
-            ?.quantity
-        }
-      </td>
-      <td>product total</td>
-    </tr>
-  ));
+  let orderTotal = 0;
+
+  const rows = products.map((product) => {
+    const productQuantity =
+      order?.products.find((orderProduct) => orderProduct.id === product.id)
+        ?.quantity ?? 0;
+
+    orderTotal += product.price * productQuantity;
+
+    return (
+      <tr key={product.id}>
+        <td>{product.name}</td>
+        <td>{product.price}</td>
+        <td>{productQuantity}</td>
+        <td>{productQuantity * product.price}</td>
+      </tr>
+    );
+  });
 
   return (
     <div>
@@ -133,7 +138,7 @@ function Order() {
                   <th>Total</th>
                   <th></th>
                   <th></th>
-                  <th>Total</th>
+                  <th>{orderTotal}</th>
                 </tr>
               </tfoot>
             </Table>
