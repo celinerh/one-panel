@@ -11,8 +11,6 @@ interface Product {
 }
 
 const useProducts = (productIds: number[]) => {
-  console.log("ids", productIds);
-
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isPending, setIsPending] = useState<boolean>(true);
@@ -37,7 +35,6 @@ const useProducts = (productIds: number[]) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setProducts(data);
         setIsPending(false);
         setError(null);
