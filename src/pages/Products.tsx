@@ -44,7 +44,9 @@ function Products() {
       </td>
       <td>{product.price}</td>
       <td>
-        <Link to={`/product/${product.id}`}>Edit</Link>
+        <Button component={Link} to={`/product/${product.id}`} color="tertiary">
+          Edit
+        </Button>
       </td>
     </tr>
   ));
