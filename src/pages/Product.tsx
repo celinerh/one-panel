@@ -2,9 +2,11 @@ import {
   Button,
   FileInput,
   NumberInput,
+  Text,
   Textarea,
   TextInput,
 } from "@mantine/core";
+import { openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
@@ -65,6 +67,30 @@ function Product() {
       });
     });
   };
+
+  const openModal = () =>
+    openConfirmModal({
+      title: "Are you sure you want to delete this product?",
+      labels: { confirm: "Yes", cancel: "No" },
+      onConfirm: () => {
+        fetch(`http://localhost:3001/products/${id}`, {
+          method: "DELETE",
+          headers: {
+            authorization: "Bearer " + token,
+            "Content-type": "application/json",
+          },
+        }).then(() => {
+          navigate("/products");
+          showNotification({
+            color: "green",
+            title: "Success!",
+            message: "Product was deleted successfully",
+            autoClose: 3000,
+            disallowClose: true,
+          });
+        });
+      },
+    });
 
   return (
     <div>
@@ -161,7 +187,7 @@ function Product() {
               </Button>
               <Button
                 className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
-                type="submit"
+                onClick={openModal}
               >
                 <HiTrash />
                 <span className="pl-1">Delete</span>
