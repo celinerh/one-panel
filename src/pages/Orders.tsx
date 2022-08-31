@@ -63,7 +63,7 @@ function Orders() {
       </td>
 
       <td>
-        <Button component={Link} to={`/order/${order.id}`} color="primary">
+        <Button component={Link} to={`/order/${order.id}`} color="tertiary">
           Edit
         </Button>
       </td>
