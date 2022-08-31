@@ -72,7 +72,7 @@ function Product() {
     openConfirmModal({
       title: "Are you sure you want to delete this product?",
       labels: { confirm: "Yes", cancel: "No" },
-      confirmProps: { color: "red" },
+      confirmProps: { color: "secondary" },
       onConfirm: () => {
         fetch(`http://localhost:3001/products/${id}`, {
           method: "DELETE",

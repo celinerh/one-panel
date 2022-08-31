@@ -31,7 +31,7 @@ function Navigation() {
             }
             icon={<navLink.icon className="w-6 h-6 text-gray-400" />}
             active={location.pathname === navLink.to}
-            color="gray"
+            color="tertiary"
             key={index}
           />
         ))}
