@@ -1,8 +1,9 @@
-import { Table } from "@mantine/core";
+import { Button, Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Heading from "../components/Heading";
 import { useToken } from "../contexts/TokenContext";
+import { BsPlusLg } from "react-icons/bs";
 
 interface Product {
   id: number;
@@ -50,7 +51,12 @@ function Products() {
 
   return (
     <div>
-      <Heading title="Products" />
+      <div className="flex gap-6">
+        <Heading title="Products" />
+        <Button component={Link} to="/product/new" color="primary" size="xs">
+          <BsPlusLg />
+        </Button>
+      </div>
       <Table
         verticalSpacing="xs"
         horizontalSpacing="xl"
