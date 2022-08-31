@@ -1,4 +1,5 @@
-import { Button, Select, Table } from "@mantine/core";
+import { Button, Select, Table, Text } from "@mantine/core";
+import { closeAllModals, openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -11,6 +12,12 @@ function Order() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { token } = useToken();
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, [token]);
 
   const {
     order,
@@ -30,12 +37,6 @@ function Order() {
     error: productsError,
     isPending: isProductsPending,
   } = useProducts(order?.products.map((product) => product.id) ?? []);
-
-  useEffect(() => {
-    if (!token) {
-      navigate("/login");
-    }
-  }, [token]);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
@@ -58,6 +59,14 @@ function Order() {
       });
     });
   };
+
+  const openModal = () =>
+    openConfirmModal({
+      title: "Are you sure you want to discard the changes?",
+      children: <Text size="sm">You will lose all the changes you made</Text>,
+      labels: { confirm: "Yes", cancel: "No" },
+      onConfirm: () => navigate("/orders"),
+    });
 
   const rows = products.map((product) => (
     <tr key={product.id}>
@@ -135,7 +144,7 @@ function Order() {
               </Button>
               <Button
                 className="text-red-400 bg-white border-2 border-red-300 hover:bg-red-50"
-                type="submit"
+                onClick={openModal}
               >
                 Cancel
               </Button>
