@@ -7,7 +7,7 @@
 @layer base {
   body {
     background-color: #f9fafb;
-    min-width: 320px;
+    min-width: 360px;
   }
 
   html {
