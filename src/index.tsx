@@ -28,6 +28,9 @@ root.render(
       withNormalizeCSS
       emotionCache={customEmotionCache}
       theme={{
+        breakpoints: {
+          md: 767,
+        },
         colors: {
           primary: [
             "#f0fdf4",
