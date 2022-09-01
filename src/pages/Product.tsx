@@ -1,25 +1,19 @@
-import {
-  Button,
-  FileInput,
-  NumberInput,
-  Text,
-  Textarea,
-  TextInput,
-} from "@mantine/core";
+import { Button } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
-import { Product } from "../features/product/product.model";
+import { Product as ProductInterface } from "../features/product/product.model";
+import ProductFormInputs from "../features/product/ProductFormInputs";
 
 function Product() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { token } = useToken();
 
-  const [product, setProduct] = useState<Product>();
+  const [product, setProduct] = useState<ProductInterface>();
 
   useEffect(() => {
     if (!token) {
@@ -96,75 +90,7 @@ function Product() {
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <TextInput
-              name="name"
-              placeholder="Name"
-              label="Name"
-              withAsterisk
-              className="w-full"
-              value={product.name}
-              onChange={(e) => {
-                setProduct({
-                  ...product,
-                  name: e.target.value,
-                });
-              }}
-            />
-            <TextInput
-              name="brand"
-              placeholder="Brand"
-              label="Brand"
-              withAsterisk
-              className="w-full"
-              value={product.brand}
-              onChange={(e) => {
-                setProduct({
-                  ...product,
-                  brand: e.target.value,
-                });
-              }}
-            />
-            <TextInput
-              name="in-stock"
-              placeholder="In stock"
-              label="In stock"
-              withAsterisk
-              className="w-full"
-              value={product.stock}
-              disabled
-            />
-            <NumberInput
-              name="price"
-              placeholder="Price"
-              label="Price"
-              withAsterisk
-              className="w-full"
-              precision={2}
-              value={product.price}
-              onChange={(value) => {
-                setProduct({
-                  ...product,
-                  price: value ?? 0,
-                });
-              }}
-            />
-            <Textarea
-              name="description"
-              placeholder="Description"
-              label="Description"
-              withAsterisk
-              className="w-full"
-              autosize
-              minRows={4}
-              maxRows={4}
-              value={product.description}
-              onChange={(e) => {
-                setProduct({
-                  ...product,
-                  description: e.target.value,
-                });
-              }}
-            />
+            <ProductFormInputs product={product} setProduct={setProduct} />
             <div className="flex gap-2">
               <Button color="primary" type="submit">
                 Update
