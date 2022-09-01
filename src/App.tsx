@@ -10,7 +10,7 @@ function App() {
       <h1 className="p-6 mb-8 text-3xl text-center border-b-2 border-gray-200 sm:text-4xl font-Pacifico md:hidden">
         OnePanel
       </h1>
-      <div className="w-full h-screen p-6 md:p-6 lg:p-10">
+      <div className="w-full h-screen p-6 mb-32 md:mb-0 md:p-6 lg:p-10">
         <Outlet />
       </div>
       <BottomNavigation className="md:hidden" />
