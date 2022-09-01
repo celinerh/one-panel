@@ -55,7 +55,7 @@ function Products() {
     <div>
       <div className="flex gap-6">
         <Heading title="Products" />
-        <Button component={Link} to="/product/new" color="primary" size="xs">
+        <Button component={Link} to="/product/create" color="primary" size="xs">
           <BsPlusLg />
         </Button>
       </div>
