@@ -12,15 +12,7 @@ import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../contexts/TokenContext";
-
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  stock: number;
-  price: number;
-  description: string;
-}
+import { Product } from "../features/product/product.model";
 
 function Product() {
   const navigate = useNavigate();
