@@ -20,7 +20,6 @@ function Product() {
   const { token } = useToken();
 
   const [product, setProduct] = useState<Product>();
-  const [image, setImage] = useState<File[] | null>(null);
 
   useEffect(() => {
     if (!token) {
@@ -165,14 +164,6 @@ function Product() {
                   description: e.target.value,
                 });
               }}
-            />
-            <FileInput
-              placeholder="Drag and drop image to upload or import image from your computer"
-              accept="image/png,image/jpeg"
-              onChange={(file) => {
-                setImage(file);
-              }}
-              multiple
             />
             <div className="flex gap-2">
               <Button color="primary" type="submit">
