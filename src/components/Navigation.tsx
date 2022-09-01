@@ -17,7 +17,13 @@ function Navigation() {
   const location = useLocation();
 
   return (
-    <Navbar height="100vh" p="xs" width={{ base: 300 }}>
+    <Navbar
+      height="100vh"
+      p="xs"
+      width={{ base: 300 }}
+      hiddenBreakpoint="md"
+      hidden
+    >
       <Navbar.Section>
         <h1 className="mx-auto text-4xl w-fit font-Pacifico">OnePanel</h1>
       </Navbar.Section>
