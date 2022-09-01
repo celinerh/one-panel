@@ -38,13 +38,24 @@ function Products() {
     <tr key={product.id}>
       <td>#{product.id}</td>
       <td>{product.name}</td>
-      <td>{product.brand}</td>
-      <td className={product.stock <= 10 ? "text-red-500" : ""}>
+      <td className="hidden lg:table-cell">{product.brand}</td>
+      <td
+        className={
+          product.stock <= 10
+            ? "text-red-500 hidden sm:table-cell"
+            : " hidden sm:table-cell"
+        }
+      >
         {product.stock}
       </td>
-      <td>{product.price}</td>
+      <td className="hidden sm:table-cell">{product.price}</td>
       <td>
-        <Button component={Link} to={`/product/${product.id}`} color="tertiary">
+        <Button
+          component={Link}
+          to={`/product/${product.id}`}
+          color="tertiary"
+          size="xs"
+        >
           Edit
         </Button>
       </td>
@@ -61,17 +72,17 @@ function Products() {
       </div>
       <Table
         verticalSpacing="xs"
-        horizontalSpacing="xl"
+        horizontalSpacing="lg"
         highlightOnHover
         className="bg-white border-2 border-gray-200"
       >
         <thead>
           <tr className="bg-gray-50">
-            <th>Product ID</th>
+            <th className="whitespace-nowrap">Product ID</th>
             <th>Name</th>
-            <th>Brand</th>
-            <th>In stock</th>
-            <th>Price</th>
+            <th className="hidden lg:table-cell">Brand</th>
+            <th className="hidden whitespace-nowrap sm:table-cell">In stock</th>
+            <th className="hidden sm:table-cell">Price</th>
             <th>Action</th>
           </tr>
         </thead>
