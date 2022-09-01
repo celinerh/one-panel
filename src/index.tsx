@@ -14,6 +14,7 @@ import Product from "./pages/Product";
 import Order from "./pages/Order";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
+import CreateProduct from "./pages/CreateProduct";
 
 const customEmotionCache = createEmotionCache({ key: "one-panel" });
 
@@ -78,6 +79,7 @@ root.render(
                 <Route element={<App />}>
                   <Route path="/" element={<Navigate to="/login" replace />} />
                   <Route path="/products" element={<Products />} />
+                  <Route path="/product/create" element={<CreateProduct />} />
                   <Route path="/product/:id" element={<Product />} />
                   <Route path="/orders" element={<Orders />} />
                   <Route path="/order/:id" element={<Order />} />
