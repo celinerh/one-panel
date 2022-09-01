@@ -90,7 +90,11 @@ function Product() {
           </h1>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <ProductFormInputs product={product} setProduct={setProduct} />
+            <ProductFormInputs
+              mode="edit"
+              product={product}
+              setProduct={setProduct}
+            />
             <div className="flex gap-2">
               <Button color="primary" type="submit">
                 Update

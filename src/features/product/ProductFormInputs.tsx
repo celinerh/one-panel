@@ -2,9 +2,11 @@ import { NumberInput, Textarea, TextInput } from "@mantine/core";
 import { Product } from "./product.model";
 
 function ProductFormInputs({
+  mode,
   product,
   setProduct,
 }: {
+  mode: string;
   product: Product;
   setProduct: Function;
 }) {
@@ -38,14 +40,20 @@ function ProductFormInputs({
           });
         }}
       />
-      <TextInput
+      <NumberInput
         name="in-stock"
         placeholder="In stock"
         label="In stock"
         withAsterisk
         className="w-full"
         value={product.stock}
-        disabled
+        onChange={(value) => {
+          setProduct({
+            ...product,
+            stock: value,
+          });
+        }}
+        disabled={mode === "edit" ? true : false}
       />
       <NumberInput
         name="price"
@@ -61,6 +69,7 @@ function ProductFormInputs({
             price: value ?? 0,
           });
         }}
+        hideControls
       />
       <Textarea
         name="description"
