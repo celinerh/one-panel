@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import { useToken } from "../../../contexts/TokenContext";
-
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  stock: number;
-  price: number;
-  description: string;
-}
+import { Product } from "../../product/product.model";
 
 const useProducts = (productIds: number[]) => {
   const [products, setProducts] = useState<Product[]>([]);

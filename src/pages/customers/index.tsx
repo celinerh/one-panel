@@ -3,15 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useToken } from "../../contexts/TokenContext";
-
-interface Customer {
-  id: number;
-  name: string;
-  address: string;
-  email: string;
-  phone: number;
-  marketing: boolean;
-}
+import { Customer } from "../../features/customer/customer.model";
 
 function Customers() {
   const [customers, setCustomers] = useState<Customer[]>([]);

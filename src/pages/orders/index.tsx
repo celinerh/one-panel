@@ -3,19 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useToken } from "../../contexts/TokenContext";
-
-interface OrderProduct {
-  id: number;
-  quantity: number;
-}
-
-interface Order {
-  id: number;
-  date: Date;
-  customerId: number;
-  status: string;
-  products: OrderProduct[];
-}
+import { Order } from "../../features/order/order.model";
 
 function Orders() {
   const [orders, setOrders] = useState<Order[]>([]);

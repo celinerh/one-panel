@@ -1,18 +1,6 @@
 import { useState, useEffect } from "react";
 import { useToken } from "../../../contexts/TokenContext";
-
-interface OrderProduct {
-  id: number;
-  quantity: number;
-}
-
-interface Order {
-  id: number;
-  date: Date;
-  customerId: number;
-  status: string;
-  products: OrderProduct[];
-}
+import { Order } from "../order.model";
 
 const useOrder = (orderId: number | null) => {
   const [order, setOrder] = useState<Order>();

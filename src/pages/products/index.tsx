@@ -4,14 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Heading from "../../components/Heading";
 import { useToken } from "../../contexts/TokenContext";
 import { BsPlusLg } from "react-icons/bs";
-
-interface Product {
-  id: number;
-  name: string;
-  brand: string;
-  stock: number;
-  price: number;
-}
+import { Product } from "../../features/product/product.model";
 
 function Products() {
   const [products, setProducts] = useState<Product[]>([]);

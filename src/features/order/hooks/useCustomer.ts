@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import { useToken } from "../../../contexts/TokenContext";
-
-interface Customer {
-  id: number;
-  name: string;
-  address: string;
-  email: string;
-  phone: string;
-  marketing: boolean;
-}
+import { Customer } from "../../customer/customer.model";
 
 const useCustomer = (customerId: number | null) => {
   const [customer, setCustomer] = useState<Customer>();

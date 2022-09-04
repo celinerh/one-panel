@@ -3,14 +3,14 @@ import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../../../contexts/TokenContext";
-import { Product as ProductInterface } from "../../../features/product/product.model";
+import { Product } from "../../../features/product/product.model";
 import ProductFormInputs from "../../../features/product/ProductFormInputs";
 
 function CreateProduct() {
   const navigate = useNavigate();
   const { token } = useToken();
 
-  const [product, setProduct] = useState<ProductInterface>({
+  const [product, setProduct] = useState<Product>({
     id: 0,
     name: "",
     brand: "",
