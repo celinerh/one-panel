@@ -4,9 +4,9 @@ import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
-import { useToken } from "../../../contexts/TokenContext";
-import { Product as ProductInterface } from "../../../features/product/product.model";
-import ProductFormInputs from "../../../features/product/ProductFormInputs";
+import { useToken } from "../../../../contexts/TokenContext";
+import { Product as ProductInterface } from "../../../../features/product/product.model";
+import ProductFormInputs from "../../../../features/product/ProductFormInputs";
 
 function Product() {
   const navigate = useNavigate();

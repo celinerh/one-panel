@@ -2,9 +2,9 @@ import { Button } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../../../contexts/TokenContext";
-import { Product } from "../../../features/product/product.model";
-import ProductFormInputs from "../../../features/product/ProductFormInputs";
+import { useToken } from "../../../../contexts/TokenContext";
+import { Product } from "../../../../features/product/product.model";
+import ProductFormInputs from "../../../../features/product/ProductFormInputs";
 
 function CreateProduct() {
   const navigate = useNavigate();

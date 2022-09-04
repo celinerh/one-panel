@@ -9,11 +9,11 @@ import Products from "./pages/products";
 import { TokenProvider } from "./contexts/TokenContext";
 import Customers from "./pages/customers";
 import NotFound from "./pages/notFound";
-import Product from "./pages/products/product";
+import Product from "./pages/products/product/edit";
 import Order from "./pages/orders/order";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
-import CreateProduct from "./pages/products/create";
+import CreateProduct from "./pages/products/product/create";
 import Orders from "./pages/orders";
 
 const customEmotionCache = createEmotionCache({ key: "one-panel" });
