@@ -1,19 +1,19 @@
 import { Button } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../../../../contexts/TokenContext";
-import { Product as ProductInterface } from "../../../../features/product/product.model";
+import { productFormConfig } from "../../../../features/product/form";
 import ProductFormInputs from "../../../../features/product/ProductFormInputs";
 
 function Product() {
   const navigate = useNavigate();
   const { id } = useParams();
   const { token } = useToken();
-
-  const [product, setProduct] = useState<ProductInterface>();
+  const form = useForm(productFormConfig);
 
   useEffect(() => {
     if (!token) {
@@ -28,7 +28,9 @@ function Product() {
       },
     })
       .then((res) => res.json())
-      .then((data) => setProduct(data));
+      .then((data) => {
+        form.setValues(data);
+      });
   }, []);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
@@ -40,7 +42,7 @@ function Product() {
         authorization: "Bearer " + token,
         "Content-type": "application/json",
       },
-      body: JSON.stringify(product),
+      body: JSON.stringify(form.values),
     }).then(() => {
       navigate("/products");
       showNotification({
@@ -80,33 +82,27 @@ function Product() {
 
   return (
     <div>
-      {product && (
-        <>
-          <h1 className="mb-10 text-2xl font-semibold">
-            {product.name}{" "}
-            <span className="text-base font-normal text-gray-400 align-middle">
-              #{product.id}
-            </span>
-          </h1>
+      <>
+        <h1 className="mb-10 text-2xl font-semibold">
+          {form.values.name}{" "}
+          <span className="text-base font-normal text-gray-400 align-middle">
+            #{id}
+          </span>
+        </h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            <ProductFormInputs
-              mode="edit"
-              product={product}
-              setProduct={setProduct}
-            />
-            <div className="flex gap-2">
-              <Button color="primary" type="submit">
-                Update
-              </Button>
-              <Button color="secondary" variant="outline" onClick={openModal}>
-                <HiTrash />
-                <span className="pl-1">Delete</span>
-              </Button>
-            </div>
-          </form>
-        </>
-      )}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <ProductFormInputs mode="edit" form={form} />
+          <div className="flex gap-2">
+            <Button color="primary" type="submit">
+              Update
+            </Button>
+            <Button color="secondary" variant="outline" onClick={openModal}>
+              <HiTrash />
+              <span className="pl-1">Delete</span>
+            </Button>
+          </div>
+        </form>
+      </>
     </div>
   );
 }
