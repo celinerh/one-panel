@@ -1,8 +1,8 @@
 import { Table } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Heading from "../components/Heading";
-import { useToken } from "../contexts/TokenContext";
+import Heading from "../../components/Heading";
+import { useToken } from "../../contexts/TokenContext";
 
 interface Customer {
   id: number;
@@ -56,7 +56,7 @@ function Customers() {
       >
         <thead>
           <tr className="bg-gray-50">
-            <th>Customer ID</th>
+            <th className="whitespace-nowrap">Customer ID</th>
             <th>Name</th>
             <th>Address</th>
             <th>Email</th>

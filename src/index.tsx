@@ -4,17 +4,17 @@ import "./index.css";
 import App from "./App";
 import { createEmotionCache, MantineProvider } from "@mantine/core";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Login from "./pages/Login";
-import Products from "./pages/Products";
+import Login from "./pages/login";
+import Products from "./pages/products";
 import { TokenProvider } from "./contexts/TokenContext";
-import Orders from "./pages/Orders";
-import Customers from "./pages/Customers";
-import NotFound from "./pages/NotFound";
-import Product from "./pages/Product";
-import Order from "./pages/Order";
+import Customers from "./pages/customers";
+import NotFound from "./pages/notFound";
+import Product from "./pages/products/product";
+import Order from "./pages/orders/order";
 import { NotificationsProvider } from "@mantine/notifications";
 import { ModalsProvider } from "@mantine/modals";
-import CreateProduct from "./pages/CreateProduct";
+import CreateProduct from "./pages/products/create";
+import Orders from "./pages/orders";
 
 const customEmotionCache = createEmotionCache({ key: "one-panel" });
 

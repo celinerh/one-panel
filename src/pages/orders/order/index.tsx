@@ -1,12 +1,12 @@
 import { Button, Select, Table, Text } from "@mantine/core";
-import { closeAllModals, openConfirmModal } from "@mantine/modals";
+import { openConfirmModal } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { useToken } from "../contexts/TokenContext";
-import useCustomer from "../features/order/hooks/useCustomer";
-import useOrder from "../features/order/hooks/useOrder";
-import useProducts from "../features/order/hooks/useProducts";
+import { useToken } from "../../../contexts/TokenContext";
+import useCustomer from "../../../features/order/hooks/useCustomer";
+import useOrder from "../../../features/order/hooks/useOrder";
+import useProducts from "../../../features/order/hooks/useProducts";
 
 function Order() {
   const navigate = useNavigate();

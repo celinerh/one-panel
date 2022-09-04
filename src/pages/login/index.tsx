@@ -1,6 +1,6 @@
 import { Button, PasswordInput, TextInput } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
-import { useToken } from "../contexts/TokenContext";
+import { useToken } from "../../contexts/TokenContext";
 
 function Login() {
   const { token, setToken } = useToken();
