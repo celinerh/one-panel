@@ -4,7 +4,10 @@ import { showNotification } from "@mantine/notifications";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToken } from "../../../../contexts/TokenContext";
-import { productFormConfig } from "../../../../features/product/form";
+import {
+  ProductForm,
+  productFormConfig,
+} from "../../../../features/product/form";
 import ProductFormInputs from "../../../../features/product/ProductFormInputs";
 
 function CreateProduct() {
@@ -18,16 +21,14 @@ function CreateProduct() {
     }
   }, [token]);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = (values: ProductForm) => {
     fetch(`http://localhost:3001/products`, {
       method: "POST",
       headers: {
         authorization: "Bearer " + token,
         "Content-type": "application/json",
       },
-      body: JSON.stringify(form.values),
+      body: JSON.stringify(values),
     }).then(() => {
       navigate("/products");
       showNotification({
@@ -44,7 +45,10 @@ function CreateProduct() {
     <div>
       <>
         <h1 className="mb-10 text-2xl font-semibold">Add product</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <form
+          onSubmit={form.onSubmit(handleSubmit)}
+          className="flex flex-col gap-6"
+        >
           <ProductFormInputs mode="create" form={form} />
           <Button color="primary" type="submit" className="w-[100px]">
             Create

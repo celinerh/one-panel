@@ -6,7 +6,10 @@ import { useEffect } from "react";
 import { HiTrash } from "react-icons/hi";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToken } from "../../../../contexts/TokenContext";
-import { productFormConfig } from "../../../../features/product/form";
+import {
+  ProductForm,
+  productFormConfig,
+} from "../../../../features/product/form";
 import ProductFormInputs from "../../../../features/product/ProductFormInputs";
 
 function Product() {
@@ -33,16 +36,14 @@ function Product() {
       });
   }, []);
 
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault();
-
+  const handleSubmit = (values: ProductForm) => {
     fetch(`http://localhost:3001/products/${id}`, {
       method: "PUT",
       headers: {
         authorization: "Bearer " + token,
         "Content-type": "application/json",
       },
-      body: JSON.stringify(form.values),
+      body: JSON.stringify(values),
     }).then(() => {
       navigate("/products");
       showNotification({
@@ -90,7 +91,10 @@ function Product() {
           </span>
         </h1>
 
-        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <form
+          onSubmit={form.onSubmit(handleSubmit)}
+          className="flex flex-col gap-6"
+        >
           <ProductFormInputs mode="edit" form={form} />
           <div className="flex gap-2">
             <Button color="primary" type="submit">
